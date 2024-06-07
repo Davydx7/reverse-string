@@ -1,0 +1,24 @@
+# Node.js dependencies and build artifacts
+node_modules
+dist
+
+# Source files
+src
+
+# Test files
+test
+
+# Configuration files
+tsconfig.json
+.eslintrc.json
+.prettierrc
+*.config.js
+
+# Miscellaneous
+.DS_Store
+.env
+*.log
+
+# Git files
+.git
+.gitignore
