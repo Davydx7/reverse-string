@@ -1,0 +1,16 @@
+{
+  "name": "string-reverse",
+  "version": "0.0.1",
+  "description": "creating a package to be published",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "test",
+    "publish"
+  ],
+  "author": "David Olufemi",
+  "license": "MIT"
+}
