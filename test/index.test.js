@@ -1,4 +1,4 @@
-import reverseString from './index.js';
+import reverseString from '../dist/index.js';
 
 // Test cases
 try {

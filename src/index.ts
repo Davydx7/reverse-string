@@ -1,6 +1,6 @@
 // stringReverser.js
-
-const reverseString = (inputString) => {
+type TReverseString = (inputString: string) => string;
+const reverseString: TReverseString = (inputString) => {
   if (typeof inputString !== 'string') {
     throw new Error('Invalid input. Function reverseString expects a string.');
   }
