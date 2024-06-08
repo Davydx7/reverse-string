@@ -1,38 +1,84 @@
 import reverseString from '../dist/index.js';
+import { assert, colorize, allPassed } from './utils.test.js';
 
 // Test cases
+assert({
+  actual: reverseString('hello'),
+  expected: 'olleh',
+  testCase: 1
+});
+
+assert({
+  actual: reverseString('world'),
+  expected: 'dlrow',
+  testCase: 2
+});
+
+assert({
+  actual: reverseString(''),
+  expected: '',
+  testCase: 3
+});
+
+assert({
+  actual: reverseString('a'),
+  expected: 'a',
+  testCase: 4
+});
+
+assert({
+  actual: reverseString('ab'),
+  expected: 'ba',
+  testCase: 5
+});
+assert({
+  actual: reverseString('racecar'),
+  expected: 'racecar',
+  testCase: 6
+});
+
+
+// Invalid input cases
 try {
-  // Valid input cases
-  console.assert(reverseString('hello') === 'olleh', 'Test Case 1 Failed');
-  console.assert(reverseString('world') === 'dlrow', 'Test Case 2 Failed');
-  console.assert(reverseString('') === '', 'Test Case 3 Failed');
-  console.assert(reverseString('a') === 'a', 'Test Case 4 Failed');
-  console.assert(reverseString('ab') === 'ba', 'Test Case 5 Failed');
-  console.assert(reverseString('racecar') === 'racecar', 'Test Case 6 Failed');
-
-  // Invalid input cases
-  try {
-    reverseString(123);
-    console.assert(false, 'Test Case 7 Failed: Expected error for non-string input');
-  } catch (e) {
-    console.assert(e.message === 'Invalid input. Function reverseString expects a string.', 'Test Case 7 Failed');
-  }
-
-  try {
-    reverseString({});
-    console.assert(false, 'Test Case 8 Failed: Expected error for non-string input');
-  } catch (e) {
-    console.assert(e.message === 'Invalid input. Function reverseString expects a string.', 'Test Case 8 Failed');
-  }
-
-  try {
-    reverseString([]);
-    console.assert(false, 'Test Case 9 Failed: Expected error for non-string input');
-  } catch (e) {
-    console.assert(e.message === 'Invalid input. Function reverseString expects a string.', 'Test Case 9 Failed');
-  }
-
-  console.log('All test cases passed');
-} catch (error) {
-  console.error(error.message);
+  reverseString(123);
+  console.error(colorize('Test Case 7 Failed: Expected error for number input', 'red'));
+  allPassed.value = false;
+} catch (e) {
+  assert({
+    actual: e.message,
+    expected: 'Invalid input. Function reverseString expects a string. but got number instead.',
+    testCase: 7
+  });
 }
+
+try {
+  reverseString({});
+  console.error(colorize('Test Case 8 Failed: Expected error for object input', 'red'));
+  allPassed.value = false;
+} catch (e) {
+  assert({
+    actual: e.message,
+    expected: 'Invalid input. Function reverseString expects a string. but got object instead.',
+    testCase: 8
+  });
+}
+
+try {
+  reverseString([]);
+  console.error(colorize('Test Case 9 Failed: Expected error for array input', 'red'));
+  allPassed.value = false;
+} catch (e) {
+  assert({
+    actual: e.message,
+    expected: 'Invalid input. Function reverseString expects a string. but got object instead.',
+    testCase: 9
+  });
+}
+
+if (allPassed.value) {
+  console.log(colorize('All test cases passed', 'green'));
+  process.exit(0);
+} else {
+  console.error(colorize(colorize('Some test cases failed', 'red'), 'red'));
+  process.exit(1);
+};
